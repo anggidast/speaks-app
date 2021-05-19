@@ -342,6 +342,25 @@ a h3 {
   transform: scale(0);
 }
 
+/* footer */
+footer {
+  position: fixed;
+  z-index: 1;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgb(54, 54, 54);
+  color: white;
+  text-align: center;
+  font-size: 11px;
+  padding: 5px 0 5px 0px;
+}
+
+footer p a {
+  text-decoration: none;
+  color: rgb(221, 166, 13);
+}
+
 /* Responsive */
 @media(max-width: 1088px) {
   .container {
