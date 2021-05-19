@@ -274,10 +274,13 @@ a h3 {
 }
 
 .action {
-  width: 30%;
   margin-top: 10px;
   display: flex;
-  justify-content: space-around;
+  justify-content: flex-start;
+}
+
+.action a {
+  margin-right: 8px;
 }
 
 .single-action {
