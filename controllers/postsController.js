@@ -38,7 +38,7 @@ class Controller {
           .then(fav => {
             res.render('profile', { data: user, id: req.session.UserId, user: req.query.username, favorites: fav.Favorites })
           })
-          .catch(err => res.send(err));
+          .catch(err => res.render('error', { id: req.session.UserId, err }));
       } else {
         Post.findAll({
             include: [User, Favorite],
@@ -51,7 +51,7 @@ class Controller {
             req.app.locals.postId = data[0].id + 1;
             res.render('posts', { data: data || null, id: req.session.UserId, img })
           })
-          .catch(err => res.send(err));
+          .catch(err => res.render('error', { id: req.session.UserId, err }));
       }
     } else {
       res.redirect('/users/login');
@@ -65,7 +65,7 @@ class Controller {
   static postAdd(req, res) {
     upload(req, res, (err) => {
       if (err) {
-        res.send(err);
+        res.render('error', { id: req.session.UserId, err });
       } else {
         Post.create({
             title: req.body.title,
@@ -74,7 +74,7 @@ class Controller {
             UserId: req.session.UserId
           })
           .then((data) => res.redirect('/posts?img=' + data.img_url))
-          .catch(err => res.send(err));
+          .catch(err => res.render('error', { id: req.session.UserId, err }));
       }
     });
 
@@ -85,7 +85,7 @@ class Controller {
       .then(user => {
         res.render('post-form', { user, id: req.session.UserId });
       })
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 
   static postEdit(req, res) {
@@ -97,7 +97,7 @@ class Controller {
           res.redirect('/posts')
         }
       })
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 
   static delete(req, res) {
@@ -109,7 +109,7 @@ class Controller {
           res.redirect('/posts')
         }
       })
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 
   static fav(req, res) {
@@ -126,7 +126,7 @@ class Controller {
           res.redirect('/posts')
         }
       })
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 }
 

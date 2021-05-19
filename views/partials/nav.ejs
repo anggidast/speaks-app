@@ -8,6 +8,7 @@
       <button class="search-button" type="submit"><img class="icon" src="/magnifying-glass.svg" width="18" alt="search-icon" title="Search"></button>
     </form>
   </div>
+
   <ul>
     <li><a href="/posts">Home</a></li>
     <li><a href="/users/<%= id %> ">Profile</a></li>
@@ -29,7 +30,7 @@
 </nav>
 
 <script>
-  const menuToggle = document.querySelector('.menu-toggle input');
+  const menuToggle = document.querySelector('.menu-toggle');
   const nav = document.querySelector('nav ul');
 
   menuToggle.addEventListener('click', function() {

@@ -19,7 +19,7 @@ class Controller {
           }
         })
         .then(data => res.render('favorites', { data, id: req.session.UserId }))
-        .catch(err => res.send(err));
+        .catch(err => res.render('error', { id: req.session.UserId, err }));
     } else {
       res.redirect('/users/login');
     }
@@ -38,7 +38,7 @@ class Controller {
           res.redirect('/favorites')
         }
       })
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 }
 

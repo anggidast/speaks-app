@@ -15,7 +15,7 @@ class Controller {
           order: ['id']
         })
         .then(data => res.render('users', { data, id: req.session.UserId }))
-        .catch(err => res.send(err));
+        .catch(err => res.render('error', { id: req.session.UserId, err }));
     } else {
       res.redirect('/users/login');
     }
@@ -32,7 +32,7 @@ class Controller {
         .then(data => {
           res.render('profile', { data, id: req.session.UserId, user: null, favorites: data.Favorites })
         })
-        .catch(err => res.send(err));
+        .catch(err => res.render('error', { id: req.session.UserId, err }));
     } else {
       res.redirect('/users/login');
     }
@@ -97,7 +97,7 @@ class Controller {
   static delete(req, res) {
     User.destroy({ where: req.params })
       .then(() => res.redirect('/posts'))
-      .catch(err => res.send(err));
+      .catch(err => res.render('error', { id: req.session.UserId, err }));
   }
 }
 

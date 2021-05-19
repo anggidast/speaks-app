@@ -24,10 +24,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         notNull: {
-          msg: 'Email tidak boleh kosong!'
+          msg: 'Email cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'Email tidak boleh kosong!'
+          msg: 'Email cannot be empty/null!'
         }
       }
     },
@@ -37,10 +37,10 @@ module.exports = (sequelize, DataTypes) => {
       unique: true,
       validate: {
         notNull: {
-          msg: 'Username tidak boleh kosong!'
+          msg: 'Username cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'Username tidak boleh kosong!'
+          msg: 'Username cannot be empty/null!'
         }
       }
     },
@@ -49,10 +49,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'Password tidak boleh kosong!'
+          msg: 'Password cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'Password tidak boleh kosong!'
+          msg: 'Password cannot be empty/null!'
         }
       }
     }

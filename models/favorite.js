@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'UserId tidak boleh kosong!'
+          msg: 'Re-login required'
         },
         notEmpty: {
-          msg: 'UserId tidak boleh kosong!'
+          msg: 'Re-login required'
         }
       }
     },
@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'PostId tidak boleh kosong!'
+          msg: 'Re-login required'
         },
         notEmpty: {
-          msg: 'PostId tidak boleh kosong!'
+          msg: 'Re-login required'
         }
       }
     }

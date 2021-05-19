@@ -21,10 +21,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'title tidak boleh kosong!'
+          msg: 'Title cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'title tidak boleh kosong!'
+          msg: 'Title cannot be empty/null!'
         }
       }
     },
@@ -33,10 +33,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'description tidak boleh kosong!'
+          msg: 'Description cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'description tidak boleh kosong!'
+          msg: 'Description cannot be empty/null!'
         }
       }
     },
@@ -45,10 +45,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'img_url tidak boleh kosong!'
+          msg: 'Image cannot be empty/null!'
         },
         notEmpty: {
-          msg: 'img_url tidak boleh kosong!'
+          msg: 'Image cannot be empty/null!'
         }
       }
     },
@@ -57,10 +57,10 @@ module.exports = (sequelize, DataTypes) => {
       allowNull: false,
       validate: {
         notNull: {
-          msg: 'UserId tidak boleh kosong!'
+          msg: 'Re-login required!'
         },
         notEmpty: {
-          msg: 'UserId tidak boleh kosong!'
+          msg: 'Re-login required!'
         }
       }
     }
