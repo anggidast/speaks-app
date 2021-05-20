@@ -1,6 +1,7 @@
 const { User, Post, Favorite } = require('../models');
 const path = require('path');
 const multer = require('multer');
+const fs = require('fs');
 
 const storage = multer.diskStorage({
   destination: './public/images/',
@@ -18,6 +19,7 @@ const upload = multer({
 class Controller {
   static findAll(req, res) {
     if (req.session.login) {
+      fs.rmSync('./public/images/image-undefined.jpg', { force: true });
       if (req.query.username) {
         let user;
         User.findOne({
@@ -101,8 +103,14 @@ class Controller {
   }
 
   static delete(req, res) {
-    Post.destroy({ where: req.params })
+    let deleted;
+    Post.findByPk(req.params.id)
+      .then(data => {
+        deleted = data;
+        return Post.destroy({ where: req.params })
+      })
       .then(() => {
+        fs.rmSync(`./public${deleted.img_url}`, { force: true });
         if (req.query.loc == "profile") {
           res.redirect('/users/' + req.session.UserId)
         } else {
