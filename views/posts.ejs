@@ -15,7 +15,7 @@
 
     <% data.forEach(el => { %>
     <div class="post">
-      <img src="<%= el.img_url %>" height="200" alt="">
+      <img class="image" src="<%= el.img_url %>" height="200" alt="">
       <div class="desc">
         <h3><a class="uname" href="/posts?username=<%= el.User.username %> "><%= el.User.username %></a></h3>
         <h4><%= el.title %></h4>

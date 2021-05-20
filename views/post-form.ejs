@@ -26,7 +26,7 @@
           <% if(user.title) { %>
           <% } %>
           <input type="text" name="title" id="title" placeholder="Post title" value="<%= user.title %>" required>
-          <input type="text" id="description" name="description" placeholder="Post description" maxlength="35" value="<%= user.description %>" required>
+          <textarea name="description" id="description" cols="10" rows="5" maxlength="100" placeholder="Post description" required><%= user.description %></textarea>
           <input type="text" id="img_url" name="img_url" style="display: none;" value="<%= user.img_url %>">
           <input type="text" id="UserId" name="UserId" style="display: none;" value="<%= user.UserId %>">
           <% if(!user.title) { %>
