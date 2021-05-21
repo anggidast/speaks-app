@@ -1,3 +1,4 @@
+require('dotenv').config();
 const { User, Post, Favorite } = require('../models');
 const path = require('path');
 const multer = require('multer');
