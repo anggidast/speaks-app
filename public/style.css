@@ -291,21 +291,14 @@ a h3 {
   text-overflow: ellipsis;
 }
 
-.action {
+.action, .single-action {
+  margin-top: 5px;
   display: flex;
   justify-content: flex-start;
 }
 
 .action a {
   margin-right: 8px;
-}
-
-.single-action {
-  position: absolute;
-  bottom: 0;
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-start;
 }
 
 /* Hamburger Menu */
