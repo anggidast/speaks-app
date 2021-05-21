@@ -22,6 +22,7 @@
   "homepage": "https://github.com/Flex-Armenian-Fox/challenge-lebaran-2021#readme",
   "dependencies": {
     "bcryptjs": "^2.4.3",
+    "cloudinary": "^1.25.1",
     "ejs": "^3.1.6",
     "express": "^4.17.1",
     "express-session": "^1.17.1",

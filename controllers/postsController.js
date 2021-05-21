@@ -1,13 +1,12 @@
 const { User, Post, Favorite } = require('../models');
 const path = require('path');
 const multer = require('multer');
-const fs = require('fs');
+const cloudinary = require('cloudinary');
 
 const storage = multer.diskStorage({
   destination: './public/images/',
   filename: function(req, file, cb) {
     const postId = req.app.locals.postId;
-    delete req.app.locals.id;
     cb(null, file.fieldname + '-' + postId + path.extname(file.originalname));
   }
 });
@@ -15,6 +14,12 @@ const storage = multer.diskStorage({
 const upload = multer({
   storage: storage
 }).single('image');
+
+cloudinary.config({
+  cloud_name: process.env.cloud_name,
+  api_key: process.env.api_key,
+  api_secret: process.env.api_secret
+});
 
 class Controller {
   static findAll(req, res) {
@@ -48,9 +53,8 @@ class Controller {
             ]
           })
           .then(data => {
-            const img = req.query.img || null;
             req.app.locals.postId = data[0].id + 1;
-            res.render('posts', { data: data || null, id: req.session.UserId, img })
+            res.render('posts', { data: data || null, id: req.session.UserId })
           })
           .catch(err => res.render('error', { id: req.session.UserId, err }));
       }
@@ -64,18 +68,27 @@ class Controller {
   }
 
   static postAdd(req, res) {
+    //* Upload image to server (public folder using multer)
     upload(req, res, (err) => {
       if (err) {
         res.render('error', { id: req.session.UserId, err });
       } else {
-        Post.create({
-            title: req.body.title,
-            description: req.body.description,
-            img_url: `/images/${req.file.filename}`,
-            UserId: req.session.UserId
-          })
-          .then((data) => res.redirect('/posts?img=' + data.img_url))
-          .catch(err => res.render('error', { id: req.session.UserId, err }));
+        // * Upload local/server image to cloudinary
+        const postId = req.app.locals.postId;
+        delete req.app.locals.id;
+        cloudinary.uploader.upload(req.file.path,
+          function(result) {
+            console.log(result);
+
+            Post.create({
+                title: req.body.title,
+                description: req.body.description,
+                img_url: `${result.secure_url}`,
+                UserId: req.session.UserId
+              })
+              .then(() => res.redirect('/posts'))
+              .catch(err => res.render('error', { id: req.session.UserId, err }));
+          }, { public_id: postId })
       }
     });
 
@@ -108,8 +121,7 @@ class Controller {
         deleted = data;
         return Post.destroy({ where: req.params })
       })
-      .then(async () => {
-        await fs.unlink(`./public${deleted.img_url}`, () => {});
+      .then(() => {
         if (req.query.loc == "profile") {
           res.redirect('/users/' + req.session.UserId)
         } else {
