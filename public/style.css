@@ -280,12 +280,11 @@ a h3 {
 .desc {
   position: relative;
   padding-left: 3px;
-  height: 165px;
 }
 
 .desc p {
   width: 295px;
-  height: 80px;
+  max-height: 80px;
   white-space: pre-wrap;
   word-wrap: break-word;
   overflow: hidden;
@@ -293,8 +292,6 @@ a h3 {
 }
 
 .action {
-  position: absolute;
-  bottom: 0;
   display: flex;
   justify-content: flex-start;
 }

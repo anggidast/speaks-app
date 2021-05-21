@@ -19,7 +19,6 @@ const upload = multer({
 class Controller {
   static findAll(req, res) {
     if (req.session.login) {
-      fs.rmSync('./public/images/image-undefined.jpg', { force: true });
       if (req.query.username) {
         let user;
         User.findOne({
@@ -109,8 +108,8 @@ class Controller {
         deleted = data;
         return Post.destroy({ where: req.params })
       })
-      .then(() => {
-        fs.rmSync(`./public${deleted.img_url}`, { force: true });
+      .then(async () => {
+        await fs.unlink(`./public${deleted.img_url}`, () => {});
         if (req.query.loc == "profile") {
           res.redirect('/users/' + req.session.UserId)
         } else {

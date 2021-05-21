@@ -18,8 +18,6 @@
       <img class="image" src="<%= el.img_url %>" height="200" alt="">
       <div class="desc">
         <h3><a class="uname" href="/posts?username=<%= el.User.username %> "><%= el.User.username %></a></h3>
-        <h4><%= el.title %></h4>
-        <p><%= el.description %></p>
         <% if(id == el.UserId || id == 2) { %>
         <div class="action">
           <a class="edit" href="/posts/edit/<%= el.id %>"><img class="icon" src="/edit.svg" width="18" alt="edit-icon" title="Edit this post"></a>
@@ -44,6 +42,9 @@
 
             <% }%>
           </div>
+          <h4><%= el.title %></h4>
+          <p><%= el.description %></p>
+
         </div>
       </div>
       <% }) %>

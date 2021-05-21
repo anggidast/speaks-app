@@ -33,7 +33,6 @@
       <img class="image" src="<%= el.img_url %>" height="200" alt="">
       <div class="desc">
         <h4><%= el.title %></h4>
-        <p><%= el.description %></p>
         <% if(id == el.UserId || id == 2) { %>
         <div class="action">
           <a class="edit" href="/posts/edit/<%= el.id %>?loc=profile"><img class="icon" src="/edit.svg" width="18" alt="edit-icon" title="Edit this post"></a>
@@ -58,6 +57,7 @@
 
             <% }%>
           </div>
+          <p><%= el.description %></p>
         </div>
       </div>
       <% }) %>
